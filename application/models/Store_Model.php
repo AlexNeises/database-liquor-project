@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Liquor_Model extends CI_Model
+class Store_Model extends CI_Model
 {
-	private $name, $type, $proof, $percent_vol;
+	private $name, $city, $state;
 
 	protected $ci;
 
@@ -16,7 +16,7 @@ class Liquor_Model extends CI_Model
 	{
 		if($this->get_name() != null && $data == null)
 		{
-			$query = $this->db->get_where('Liquor', array('name' => $this->get_name()));
+			$query = $this->db->get_where('Store', array('name' => $this->get_name()));
 
 			if($query->num_rows == 1)
 			{
@@ -26,9 +26,8 @@ class Liquor_Model extends CI_Model
 
 		if($data != null)
 		{
-			$this->set_type($data->type);
-			$this->set_proof($data->proof);
-			$this->set_percent_vol($data->percent_vol);
+			$this->set_city($data->city);
+			$this->set_state($data->state);
 
 			return true;
 		}
@@ -39,14 +38,13 @@ class Liquor_Model extends CI_Model
 	public function save()
 	{
 		$data = array(
-			'type'			=>	$this->get_type(),
-			'proof'			=>	$this->get_proof(),
-			'percent_vol'	=>	$this->get_percent_vol()
+			'city'	=>	$this->get_city(),
+			'state'	=>	$this->get_state()
 		);
 
 		if($this->get_name() == null)
 		{
-			if(!$this->db->insert('Liquor', $data))
+			if(!$this->db->insert('Store', $data))
 			{
 				return false;
 			}
@@ -55,7 +53,7 @@ class Liquor_Model extends CI_Model
 		else
 		{
 			$this->db->where('name', $this->get_name());
-			if(!$this->db->update('Liquor', $data))
+			if(!$this->db->update('Store', $data))
 			{
 				return false;
 			}
@@ -67,7 +65,7 @@ class Liquor_Model extends CI_Model
 		if($this->get_name() != null)
 		{
 			$this->db->where('name', $this->get_name());
-			$this->db->delete('Liquor');
+			$this->db->delete('Store');
 		}
 	}
 
@@ -79,7 +77,7 @@ class Liquor_Model extends CI_Model
 	{
 		$ci =& get_instance();
 
-		$select = sprintf("SELECT * FROM `Liquor` WHERE 1 ORDER BY `name` ASC");
+		$select = sprintf("SELECT * FROM `Store` WHERE 1 ORDER BY `name` ASC");
 
 		$all = array();
 
@@ -93,7 +91,7 @@ class Liquor_Model extends CI_Model
 		{
 			foreach($query->result() as $row)
 			{
-				$all[] = new Liquor_Model($row->name, $row);
+				$all[] = new Store_Model($row->name, $row);
 			}
 		}
 
@@ -114,36 +112,26 @@ class Liquor_Model extends CI_Model
 		$this->name = $name;
 	}
 
-	public function get_type()
+	public function get_city()
 	{
-		return $this->type;
+		return $this->city;
 	}
 	
-	public function set_type($type)
+	public function set_city($city)
 	{
-		$this->type = $type;
+		$this->city = $city;
 	}
 
-	public function get_proof()
+	public function get_state()
 	{
-		return $this->proof;
+		return $this->state;
 	}
 	
-	public function set_proof($proof)
+	public function set_state($state)
 	{
-		$this->proof = $proof;
-	}
-
-	public function get_percent_vol()
-	{
-		return $this->percent_vol;
-	}
-	
-	public function set_percent_vol($percent_vol)
-	{
-		$this->percent_vol = $percent_vol;
+		$this->state = $state;
 	}
 }
 
-/* End of file Liquor_Model.php */
-/* Location: ./application/models/Liquor_Model.php */
+/* End of file Store_Model.php */
+/* Location: ./application/models/Store_Model.php */

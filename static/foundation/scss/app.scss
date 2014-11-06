@@ -1,0 +1,77 @@
+@import "settings";
+@import "foundation";
+
+// Or selectively include components
+// @import
+//   "foundation/components/accordion",
+//   "foundation/components/alert-boxes",
+//   "foundation/components/block-grid",
+//   "foundation/components/breadcrumbs",
+//   "foundation/components/button-groups",
+//   "foundation/components/buttons",
+//   "foundation/components/clearing",
+//   "foundation/components/dropdown",
+//   "foundation/components/dropdown-buttons",
+//   "foundation/components/flex-video",
+//   "foundation/components/forms",
+//   "foundation/components/grid",
+//   "foundation/components/inline-lists",
+//   "foundation/components/joyride",
+//   "foundation/components/keystrokes",
+//   "foundation/components/labels",
+//   "foundation/components/magellan",
+//   "foundation/components/orbit",
+//   "foundation/components/pagination",
+//   "foundation/components/panels",
+//   "foundation/components/pricing-tables",
+//   "foundation/components/progress-bars",
+//   "foundation/components/reveal",
+//   "foundation/components/side-nav",
+//   "foundation/components/split-buttons",
+//   "foundation/components/sub-nav",
+//   "foundation/components/switches",
+//   "foundation/components/tables",
+//   "foundation/components/tabs",
+//   "foundation/components/thumbs",
+//   "foundation/components/tooltips",
+//   "foundation/components/top-bar",
+//   "foundation/components/type",
+//   "foundation/components/offcanvas",
+//   "foundation/components/visibility";
+
+h1 {
+	color: #333333;
+	letter-spacing: -0.11em !important;
+	text-transform: uppercase !important;
+	font: 800 80px/1.2em Open Sans;
+	
+	&.main {
+		color: #333333;
+		text-align: center;
+		letter-spacing: -0.11em !important;
+		text-transform: uppercase !important;
+		font: 800 80px/1.2em Open Sans;
+	}
+
+	&.small {
+		color: #333333;
+		text-align: center;
+		letter-spacing: -0.11em !important;
+		text-transform: uppercase !important;
+		font: 400 40px/1.2em Open Sans;
+	}
+
+	&:after {
+		content: ".";
+		color: #8C489F !important;
+	}
+}
+
+#topbar_nav {
+	border-bottom-color: #C3C3E5;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	-webkit-box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.25);
+	-moz-box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.25);
+	box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.25);
+}

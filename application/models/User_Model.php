@@ -108,7 +108,7 @@ class User_Model extends CI_Model
 	
 	public function set_password($password)
 	{
-		$this->password = sha1($password);
+		$this->password = $password;
 	}
 
 	public function get_admin()

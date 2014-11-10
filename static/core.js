@@ -8,4 +8,5 @@ $(document).ready(function(){
 	$('.submit').click(function(){
 		$(this).closest('form').submit()
 	})
+	$('#fancy').val('').fancyInput()[0].focus();
 })

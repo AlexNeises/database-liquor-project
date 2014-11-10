@@ -40,13 +40,13 @@
 //   "foundation/components/visibility";
 
 h1 {
-	color: #333333;
+	color: #FFF;
 	letter-spacing: -0.11em !important;
 	text-transform: uppercase !important;
 	font: 800 80px/1.2em Open Sans;
 	
 	&.main {
-		color: #333333;
+		color: #FFF;
 		text-align: center;
 		letter-spacing: -0.11em !important;
 		text-transform: uppercase !important;
@@ -54,7 +54,7 @@ h1 {
 	}
 
 	&.small {
-		color: #333333;
+		color: #FFF;
 		text-align: center;
 		letter-spacing: -0.11em !important;
 		text-transform: uppercase !important;
@@ -67,7 +67,24 @@ h1 {
 	}
 }
 
+body {
+	background-image: url(../../bg.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	color: #fff;
+
+	#blur_container {
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		border-radius: 10px;
+		-khtml-border-radius: 10px;
+		padding: 10px;
+		background: rgba(0,0,0,.5);
+	}
+}
+
 #topbar_nav {
+	display: none !important;
 	border-bottom-color: #C3C3E5;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;

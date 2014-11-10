@@ -2,8 +2,7 @@
 		<div class="render">
 			<div class="row max_width">
 				<div class="small-4 footer columns">
-					<?php $this->benchmark->mark('code_end'); ?>
-					Version 1.08 - Page rendered in <?php echo $this->benchmark->elapsed_time('code_start', 'code_end'); ?> seconds.
+					Version 1.08 - Page rendered in {elapsed_time} seconds.
 				</div>
 			</div>
 		</div>

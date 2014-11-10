@@ -45,7 +45,7 @@ class CI_Controller {
 		{
 			$this->$var =& load_class($class);
 		}
-		$this->benchmark->mark('code_start');
+
 		$this->load =& load_class('Loader', 'core');
 
 		$this->load->initialize();

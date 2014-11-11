@@ -18,8 +18,16 @@
 								<div class="row collapse">
 									<div class="small-3 columns">
 										<select name="search_category">
-											<option value="company">Company</option>
-											<option>Test2</option>
+											<?php if(isset($company_results)) : ?>
+												<option selected value="company">Company</option>
+											<?php else : ?>
+												<option value="company">Company</option>
+											<?php endif; ?>
+											<?php if(isset($drink_results)) : ?>
+												<option selected value="drink">Drink</option>
+											<?php else : ?>
+												<option value="drink">Drink</option>
+											<?php endif; ?>
 											<option>Test3</option>
 										</select>
 									</div>
@@ -36,34 +44,58 @@
 						</div>
 					</div>
 					<?php if(isset($company_results)) : ?>
-					<div class="row">
-						<div class="small-8 small-offset-2 columns">
-							<div class="row">
-								<div class="small-12 columns">
-									<table width="100%">
-										<thead>
-											<tr>
-												<th>Company Name</th>
-												<th>City</th>
-												<th>Country</th>
-												<th>Year Founded</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php foreach($company_results as $result) : ?>
-											<tr>
-												<td><?php print $result->get_name(); ?></td>
-												<td><?php print $result->get_city(); ?></td>
-												<td><?php print $result->get_country(); ?></td>
-												<td><?php print $result->get_founded(); ?></td>
-											</tr>
-											<?php endforeach; ?>
-										</tbody>
-									</table>
+						<div class="row">
+							<div class="small-8 small-offset-2 columns">
+								<div class="row">
+									<div class="small-12 columns">
+										<table width="100%">
+											<thead>
+												<tr>
+													<th>Company Name</th>
+													<th>City</th>
+													<th>Country</th>
+													<th>Year Founded</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php foreach($company_results as $result) : ?>
+													<tr>
+														<td><?php print $result->get_name(); ?></td>
+														<td><?php print $result->get_city(); ?></td>
+														<td><?php print $result->get_country(); ?></td>
+														<td><?php print $result->get_founded(); ?></td>
+													</tr>
+												<?php endforeach; ?>
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					<?php endif; ?>
+					<?php if(isset($drink_results)) : ?>
+						<div class="row">
+							<div class="small-8 small-offset-2 columns">
+								<div class="row">
+									<div class="small-12 columns">
+										<table width="100%">
+											<thead>
+												<tr>
+													<th>Drink Name</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php foreach($drink_results as $result) : ?>
+													<tr>
+														<td><?php print $result->get_name(); ?></td>
+													</tr>
+												<?php endforeach; ?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
 					<?php endif; ?>
 				</div>
 			</div>

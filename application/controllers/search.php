@@ -12,6 +12,11 @@ class Search extends CI_Controller {
 			{
 				$this->data['company_results'] = Company_Model::search($post_data['query_value']);
 			}
+
+			if($post_data['search_category'] == 'drink' && $post_data['query_value'] != '')
+			{
+				$this->data['drink_results'] = Drink_Model::search($post_data['query_value']);
+			}
 		}
 		$this->data['page'] = 'search';
 		$this->load->view('header', $this->data);

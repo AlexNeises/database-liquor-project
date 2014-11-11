@@ -28,7 +28,11 @@
 											<?php else : ?>
 												<option value="drink">Drink</option>
 											<?php endif; ?>
-											<option>Test3</option>
+											<?php if(isset($liquor_results)) : ?>
+												<option selected value="liquor">Liquor</option>
+											<?php else : ?>
+												<option value="liquor">Liquor</option>
+											<?php endif; ?>
 										</select>
 									</div>
 									<div class="small-9 columns">
@@ -88,6 +92,36 @@
 												<?php foreach($drink_results as $result) : ?>
 													<tr>
 														<td><?php print $result->get_name(); ?></td>
+													</tr>
+												<?php endforeach; ?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php endif; ?>
+					<?php if(isset($liquor_results)) : ?>
+						<div class="row">
+							<div class="small-8 small-offset-2 columns">
+								<div class="row">
+									<div class="small-12 columns">
+										<table width="100%">
+											<thead>
+												<tr>
+													<th>Liquor Name</th>
+													<th>Type</th>
+													<th>Proof</th>
+													<th>ABV</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php foreach($liquor_results as $result) : ?>
+													<tr>
+														<td><?php print $result->get_name(); ?></td>
+														<td><?php print $result->get_type(); ?></td>
+														<td><?php print $result->get_proof(); ?></td>
+														<td><?php print $result->get_percent_vol(); ?></td>
 													</tr>
 												<?php endforeach; ?>
 											</tbody>

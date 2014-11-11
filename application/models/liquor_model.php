@@ -104,7 +104,7 @@ class Liquor_Model extends CI_Model
 	{
 		$ci =& get_instance();
 
-		$select = sprintf("SELECT * FROM `Liquor` WHERE `name` LIKE '%%%s%%' OR `type` LIKE '%%%s%%' OR `proof` LIKE '%%%s%%' OR `percent_vol` LIKE %%%s%%", $query, $query, $query, $query);
+		$select = sprintf("SELECT * FROM `Liquor` WHERE `name` LIKE '%%%s%%' OR `type` LIKE '%%%s%%' OR `proof` LIKE '%%%s%%' OR `percent_vol` LIKE '%%%s%%'", $query, $query, $query, $query);
 
 		$all = array();
 

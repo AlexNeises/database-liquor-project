@@ -9,7 +9,6 @@ class Home extends CI_Controller {
 		$this->load->library('migration');
 		$this->migration->current();
 		$this->data['page'] = 'home';
-		$this->data['companies'] = Company_Model::get_all();
 		$this->load->view('header', $this->data);
 		$this->load->view('home', $this->data);
 		$this->load->view('footer', $this->data);

@@ -6,23 +6,17 @@ class Search extends CI_Controller {
 
 	public function index()
 	{
+		if($post_data = $this->input->post())
+		{
+			if($post_data['search_category'] == 'company' && $post_data['query_value'] != '')
+			{
+				$this->data['company_results'] = Company_Model::search($post_data['query_value']);
+			}
+		}
 		$this->data['page'] = 'search';
-		// $this->data['recipes'] = Recipe_Model::get_all();
 		$this->load->view('header', $this->data);
 		$this->load->view('home', $this->data);
 		$this->load->view('footer', $this->data);
-	}
-
-	function recipe()
-	{
-		$this->data['page'] = 'search';
-		if($post_data = $this->input->post())
-		{
-			// $this->data['found_recipe_ids'] = Recipe_Tag_Model::get_recipes_from_tag_name($post_data['search_string']);
-			$this->load->view('header', $this->data);
-			$this->load->view('search', $this->data);
-			$this->load->view('footer', $this->data);
-		}
 	}
 }
 

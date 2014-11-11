@@ -2,7 +2,7 @@
 		<div class="render">
 			<div class="row max_width">
 				<div class="small-4 footer columns">
-					Version 1.091 - Page rendered in {elapsed_time} seconds.
+					Version 1.092 - Page rendered in {elapsed_time} seconds.
 				</div>
 			</div>
 		</div>

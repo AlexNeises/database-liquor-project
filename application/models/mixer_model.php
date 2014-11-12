@@ -96,6 +96,31 @@ class Mixer_Model extends CI_Model
 		return $all;
 	}
 
+	static public function search($query)
+	{
+		$ci =& get_instance();
+
+		$select = sprintf("SELECT * FROM `Mixer` WHERE `name` LIKE '%%%s%%' OR `type` LIKE '%%%s%%'", $query, $query);
+
+		$all = array();
+
+		if(!$query = $ci->db->query($select))
+		{
+			log_message('debug', $ci->db->_error_message());
+			return false;
+		}
+
+		if($query->num_rows > 0)
+		{
+			foreach($query->result() as $row)
+			{
+				$all[] = new Mixer_Model($row->name, $row);
+			}
+		}
+
+		return $all;
+	}
+
 	//----------------------
 	// Get and Set Methods
 	//----------------------

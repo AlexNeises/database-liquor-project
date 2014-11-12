@@ -33,6 +33,16 @@
 											<?php else : ?>
 												<option value="liquor">Liquor</option>
 											<?php endif; ?>
+											<?php if(isset($mixer_results)) : ?>
+												<option selected value="mixer">Mixer</option>
+											<?php else : ?>
+												<option value="mixer">Mixer</option>
+											<?php endif; ?>
+											<?php if(isset($store_results)) : ?>
+												<option selected value="store">Store</option>
+											<?php else : ?>
+												<option value="store">Store</option>
+											<?php endif; ?>
 										</select>
 									</div>
 									<div class="small-9 columns">
@@ -52,7 +62,7 @@
 							<div class="small-8 small-offset-2 columns">
 								<div class="row">
 									<div class="small-12 columns">
-										<table width="100%">
+										<table width="100%" id="company_results">
 											<thead>
 												<tr>
 													<th>Company Name</th>
@@ -122,6 +132,60 @@
 														<td><?php print $result->get_type(); ?></td>
 														<td><?php print $result->get_proof(); ?></td>
 														<td><?php print $result->get_percent_vol(); ?></td>
+													</tr>
+												<?php endforeach; ?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php endif; ?>
+					<?php if(isset($mixer_results)) : ?>
+						<div class="row">
+							<div class="small-8 small-offset-2 columns">
+								<div class="row">
+									<div class="small-12 columns">
+										<table width="100%">
+											<thead>
+												<tr>
+													<th>Mixer Name</th>
+													<th>Type</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php foreach($mixer_results as $result) : ?>
+													<tr>
+														<td><?php print $result->get_name(); ?></td>
+														<td><?php print $result->get_type(); ?></td>
+													</tr>
+												<?php endforeach; ?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php endif; ?>
+					<?php if(isset($store_results)) : ?>
+						<div class="row">
+							<div class="small-8 small-offset-2 columns">
+								<div class="row">
+									<div class="small-12 columns">
+										<table width="100%">
+											<thead>
+												<tr>
+													<th>Store Name</th>
+													<th>City</th>
+													<th>State</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php foreach($store_results as $result) : ?>
+													<tr>
+														<td><?php print $result->get_name(); ?></td>
+														<td><?php print $result->get_city(); ?></td>
+														<td><?php print $result->get_state(); ?></td>
 													</tr>
 												<?php endforeach; ?>
 											</tbody>

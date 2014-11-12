@@ -73,6 +73,12 @@ h1 {
 	}
 }
 
+.dynatable-per-page-select {
+	width: auto !important;
+	border-right: 1px !important;
+	border-color: #000 !important;
+}
+
 body {
 	background: url(../../bg.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
@@ -95,6 +101,10 @@ body {
 
 		.footer {
 			color: #000;
+		}
+
+		.right {
+			text-align: right;
 		}
 	}
 

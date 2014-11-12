@@ -80,7 +80,7 @@ $autoload['helper'] = array('url');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('version');
 
 
 /*
@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('Company_Model', 'Drink_Model', 'Drinks_Model', 'Liquor_Model', 'Makes_Model', 'Mixer_Model', 'Mixes_With_Model', 'Posts_Model', 'Rates_Model', 'Review_Model', 'Sells_Model', 'Store_Model', 'User_Model');
+$autoload['model'] = array('company_model', 'drink_model', 'drinks_model', 'liquor_model', 'makes_model', 'mixer_model', 'mixes_with_model', 'posts_model', 'rates_model', 'review_model', 'sells_model', 'store_model', 'user_model');
 
 
 /* End of file autoload.php */

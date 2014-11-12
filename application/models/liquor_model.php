@@ -100,7 +100,7 @@ class Liquor_Model extends CI_Model
 		return $all;
 	}
 
-		static public function search($query)
+	static public function search($query)
 	{
 		$ci =& get_instance();
 

@@ -1,12 +1,46 @@
 $(document).ready(function(){
-	$('.add_liquor').click(function(){
-		$('#needed_rows_liquor').append('<tr><td><input name="liquors_needed[]" type="text"/></td><td><input name="measures_needed[]" type="text"/></td><td><input name="proof_needed[]" type="text"/></td></tr>')
-	})
-	$('.add_mixer').click(function(){
-		$('#needed_rows_mixer').append('<tr><td><input name="mixer_needed[]" type="text"/></td><td><input name="mixer_measure_needed[]" type="text"/></td></tr>')
-	})
 	$('.submit').click(function(){
 		$(this).closest('form').submit()
 	})
 	$('#company_results').dynatable();
+	$('#drink_results').dynatable();
+	$('#liquor_results').dynatable();
+	$('#mixer_results').dynatable();
+	$('#store_results').dynatable();
+	$('#recipe_results').dynatable();
+	$('#add_company').click(function(){
+		$('#company_add').slideToggle('500');
+		$('#liquor_add').slideUp('500');
+		$('#mixer_add').slideUp('500');
+		$('#store_add').slideUp('500');
+		$('#recipe_add').slideUp('500');
+	})
+	$('#add_liquor').click(function(){
+		$('#liquor_add').slideToggle('500');
+		$('#company_add').slideUp('500');
+		$('#mixer_add').slideUp('500');
+		$('#store_add').slideUp('500');
+		$('#recipe_add').slideUp('500');
+	})
+	$('#add_mixer').click(function(){
+		$('#mixer_add').slideToggle('500');
+		$('#company_add').slideUp('500');
+		$('#liquor_add').slideUp('500');
+		$('#store_add').slideUp('500');
+		$('#recipe_add').slideUp('500');
+	})
+	$('#add_store').click(function(){
+		$('#store_add').slideToggle('500');
+		$('#company_add').slideUp('500');
+		$('#mixer_add').slideUp('500');
+		$('#liquor_add').slideUp('500');
+		$('#recipe_add').slideUp('500');
+	})
+	$('#add_recipe').click(function(){
+		$('#recipe_add').slideToggle('500');
+		$('#company_add').slideUp('500');
+		$('#mixer_add').slideUp('500');
+		$('#store_add').slideUp('500');
+		$('#liquor_add').slideUp('500');
+	})
 })

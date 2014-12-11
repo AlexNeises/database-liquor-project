@@ -125,6 +125,31 @@ class Company_Model extends CI_Model
 		return $all;
 	}
 
+	static public function insert($name)
+	{
+		$ci =& get_instance();
+
+		$new_data = array(
+			'name'		=>	$name,
+			'city'		=>	'na',
+			'country'	=>	'na',
+			'founded'	=>	'na'
+		);
+
+		$select = sprintf("SELECT COUNT(`name`) AS `count_num` FROM `Company` WHERE `name` = '%s'", $name);
+
+		$query = $ci->db->query($select);
+		$result = $query->result()[0];
+
+		if($result->count_num == 0)
+		{
+			$ci->db->insert('Company', $new_data);
+			return true;
+		}
+
+		return false;
+	}
+
 	//----------------------
 	// Get and Set Methods
 	//----------------------

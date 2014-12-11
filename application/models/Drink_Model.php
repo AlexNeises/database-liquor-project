@@ -61,6 +61,28 @@ class Drink_Model extends CI_Model
 		}
 	}
 
+	static public function insert($name)
+	{
+		$ci =& get_instance();
+
+		$new_data = array(
+			'name'	=>	$name
+		);
+
+		$select = sprintf("SELECT COUNT(`name`) AS `count_num` FROM `Drink` WHERE `name` = '%s'", $name);
+
+		$query = $ci->db->query($select);
+		$result = $query->result()[0];
+
+		if($result->count_num == 0)
+		{
+			$ci->db->insert('Drink', $new_data);
+			return true;
+		}
+
+		return false;
+	}
+
 	//----------------------
 	// Static Methods
 	//----------------------

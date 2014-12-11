@@ -125,6 +125,31 @@ class Liquor_Model extends CI_Model
 		return $all;
 	}
 
+	static public function insert($name, $type, $proof, $percent_vol)
+	{
+		$ci =& get_instance();
+
+		$new_data = array(
+			'name'			=>	$name,
+			'type'			=>	$type,
+			'proof'			=>	$proof,
+			'percent_vol'	=>	$percent_vol
+		);
+
+		$select = sprintf("SELECT COUNT(`name`) AS `count_num` FROM `Liquor` WHERE `name` = '%s'", $name);
+
+		$query = $ci->db->query($select);
+		$result = $query->result()[0];
+
+		if($result->count_num == 0)
+		{
+			$ci->db->insert('Liquor', $new_data);
+			return true;
+		}
+
+		return false;
+	}
+
 	//----------------------
 	// Get and Set Methods
 	//----------------------

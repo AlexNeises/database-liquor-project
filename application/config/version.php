@@ -5,8 +5,8 @@
 |--------------------------------------------------------------------------
 |
 */
-$config['version_num'] = '1.1';
-$config['mig_num'] = '3';
+$config['version_num'] = '1.11';
+$config['mig_num'] = '4';
 
 
 /* End of file version.php */

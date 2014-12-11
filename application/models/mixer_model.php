@@ -121,6 +121,29 @@ class Mixer_Model extends CI_Model
 		return $all;
 	}
 
+	static public function insert($name, $type)
+	{
+		$ci =& get_instance();
+
+		$new_data = array(
+			'name'			=>	$name,
+			'type'			=>	$type
+		);
+
+		$select = sprintf("SELECT COUNT(`name`) AS `count_num` FROM `Mixer` WHERE `name` = '%s'", $name);
+
+		$query = $ci->db->query($select);
+		$result = $query->result()[0];
+
+		if($result->count_num == 0)
+		{
+			$ci->db->insert('Mixer', $new_data);
+			return true;
+		}
+
+		return false;
+	}
+
 	//----------------------
 	// Get and Set Methods
 	//----------------------

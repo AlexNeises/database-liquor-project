@@ -6,17 +6,17 @@ class Store_Model extends CI_Model
 
 	protected $ci;
 
-	public function __construct($name = null, $data = null)
+	public function __construct($id = 0, $data = null)
 	{
-		$this->_set_name($name);
+		$this->_set_id($id);
 		$this->_get($data);
 	}
 
 	protected function _get($data = null)
 	{
-		if($this->get_name() != null && $data == null)
+		if($this->get_id() != 0 && $data == null)
 		{
-			$query = $this->db->get_where('Store', array('name' => $this->get_name()));
+			$query = $this->db->get_where('Store', array('id' => $this->get_id()));
 
 			if($query->num_rows == 1)
 			{
@@ -26,6 +26,7 @@ class Store_Model extends CI_Model
 
 		if($data != null)
 		{
+			$this->set_name($data->name);
 			$this->set_city($data->city);
 			$this->set_state($data->state);
 
@@ -38,21 +39,22 @@ class Store_Model extends CI_Model
 	public function save()
 	{
 		$data = array(
+			'name'	=>	$this->get_name(),
 			'city'	=>	$this->get_city(),
 			'state'	=>	$this->get_state()
 		);
 
-		if($this->get_name() == null)
+		if($this->get_id() === 0)
 		{
 			if(!$this->db->insert('Store', $data))
 			{
 				return false;
 			}
-			$this->_set_name($data->name);
+			// $this->_set_id($data->id);
 		}
 		else
 		{
-			$this->db->where('name', $this->get_name());
+			$this->db->where('id', $this->get_id());
 			if(!$this->db->update('Store', $data))
 			{
 				return false;
@@ -62,9 +64,9 @@ class Store_Model extends CI_Model
 
 	public function delete()
 	{
-		if($this->get_name() != null)
+		if($this->get_id() != 0)
 		{
-			$this->db->where('name', $this->get_name());
+			$this->db->where('id', $this->get_id());
 			$this->db->delete('Store');
 		}
 	}
@@ -77,7 +79,7 @@ class Store_Model extends CI_Model
 	{
 		$ci =& get_instance();
 
-		$select = sprintf("SELECT * FROM `Store` WHERE 1 ORDER BY `name` ASC");
+		$select = sprintf("SELECT * FROM `Store` WHERE 1 ORDER BY `id` ASC");
 
 		$all = array();
 
@@ -91,7 +93,7 @@ class Store_Model extends CI_Model
 		{
 			foreach($query->result() as $row)
 			{
-				$all[] = new Store_Model($row->name, $row);
+				$all[] = new Store_Model($row->id, $row);
 			}
 		}
 
@@ -116,7 +118,7 @@ class Store_Model extends CI_Model
 		{
 			foreach($query->result() as $row)
 			{
-				$all[] = new Store_Model($row->name, $row);
+				$all[] = new Store_Model($row->id, $row);
 			}
 		}
 
@@ -127,12 +129,22 @@ class Store_Model extends CI_Model
 	// Get and Set Methods
 	//----------------------
 
+	public function get_id()
+	{
+		return $this->id;
+	}
+	
+	protected function _set_id($id)
+	{
+		$this->id = $id;
+	}
+
 	public function get_name()
 	{
 		return $this->name;
 	}
 	
-	protected function _set_name($name)
+	public function set_name($name)
 	{
 		$this->name = $name;
 	}

@@ -2,24 +2,24 @@
 
 class Sells_Model extends CI_Model
 {
-	private $sname, $dname;
+	private $sid, $dname;
 
 	protected $ci;
 
-	public function __construct($sname = null, $dname = null)
+	public function __construct($sid = 0, $dname = null)
 	{
-		$this->_set_sname($sname);
+		$this->_set_sid($sid);
 		$this->_set_dname($dname);
 	}
 
 	public function save()
 	{
 		$data = array(
-			'sname'	=> $this->get_sname(),
+			'sid'	=> $this->get_sid(),
 			'dname'	=> $this->get_dname()
 		);
 
-		$this->db->where('sname', $this->get_sname());
+		$this->db->where('sid', $this->get_sid());
 		$this->db->where('dname', $this->get_dname());
 
 		$this->db->update('sells', $data);
@@ -31,24 +31,53 @@ class Sells_Model extends CI_Model
 
 	public function delete()
 	{
-		$this->db->where('sname', $this->get_sname());
+		$this->db->where('sid', $this->get_sid());
 		$this->db->where('dname', $this->get_dname());
 
 		$this->db->delete('sells');
 	}
 
 	//----------------------
+	// Static Methods
+	//----------------------
+
+	static public function get_all_liquor_from_store($query)
+	{
+		$ci =& get_instance();
+
+		$select = sprintf("SELECT `dname` FROM `sells` WHERE `sid` = '%s'", $query);
+
+		$all = array();
+
+		if(!$query = $ci->db->query($select))
+		{
+			log_message('debug', $ci->db->_error_message());
+			return false;
+		}
+
+		if($query->num_rows > 0)
+		{
+			foreach($query->result() as $row)
+			{
+				$all[] = $row->dname;
+			}
+		}
+
+		return $all;
+	}
+
+	//----------------------
 	// Get and Set Methods
 	//----------------------
 
-	public function get_sname()
+	public function get_sid()
 	{
-		return $this->sname;
+		return $this->sid;
 	}
 	
-	protected function _set_sname($sname)
+	protected function _set_sid($sid)
 	{
-		$this->sname = $sname;
+		$this->sid = $sid;
 	}
 
 	public function get_dname()

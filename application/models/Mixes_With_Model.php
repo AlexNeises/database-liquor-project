@@ -2,7 +2,7 @@
 
 class Mixes_With_Model extends CI_Model
 {
-	private $lname, $mname, $taste, $recipe;
+	private $lname, $mname, $taste, $recipe, $recipe_name;
 
 	protected $ci;
 
@@ -29,6 +29,7 @@ class Mixes_With_Model extends CI_Model
 		{
 			$this->set_taste($data->taste);
 			$this->set_recipe($data->recipe);
+			$this->set_recipe_name($data->recipe_name);
 
 			return true;
 		}
@@ -39,10 +40,11 @@ class Mixes_With_Model extends CI_Model
 	public function save()
 	{
 		$data = array(
-			'lname'		=> $this->get_lname(),
-			'mname'		=> $this->get_mname(),
-			'taste'		=> $this->get_taste(),
-			'recipe'	=> $this->get_recipe()
+			'lname'			=> $this->get_lname(),
+			'mname'			=> $this->get_mname(),
+			'taste'			=> $this->get_taste(),
+			'recipe'		=> $this->get_recipe(),
+			'recipe_name'	=> $this->get_recipe_name()
 		);
 
 		$this->db->where('lname', $this->get_lname());
@@ -61,6 +63,35 @@ class Mixes_With_Model extends CI_Model
 		$this->db->where('mname', $this->get_mname());
 
 		$this->db->delete('mixes_with');
+	}
+
+	//----------------------
+	// Static Methods
+	//----------------------
+
+	static public function search($query)
+	{
+		$ci =& get_instance();
+
+		$select = sprintf("SELECT * FROM `mixes_with` WHERE `recipe_name` LIKE '%%%s%%'", $query);
+
+		$all = array();
+
+		if(!$query = $ci->db->query($select))
+		{
+			log_message('debug', $ci->db->_error_message());
+			return false;
+		}
+
+		if($query->num_rows > 0)
+		{
+			foreach($query->result() as $row)
+			{
+				$all[] = new Mixes_With_Model($row->lname, $row->mname, $row);
+			}
+		}
+
+		return $all;
 	}
 
 	//----------------------
@@ -105,6 +136,16 @@ class Mixes_With_Model extends CI_Model
 	public function set_recipe($recipe)
 	{
 		$this->recipe = $recipe;
+	}
+
+	public function get_recipe_name()
+	{
+		return $this->recipe_name;
+	}
+	
+	public function set_recipe_name($recipe_name)
+	{
+		$this->recipe_name = $recipe_name;
 	}
 }
 

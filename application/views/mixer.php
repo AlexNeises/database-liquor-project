@@ -10,7 +10,7 @@
 						<div class="small-8 small-offset-2 columns">
 							<div class="row">
 								<div class="small-12 columns">
-									<p>Use the search feature to find recipes, drinks, companies, stores, and more.</p>
+									<h2><?php print $title; ?> - <?php print $type; ?></h2>
 									<p>The dropdown menu should be used to choose the category you would like to search.  Then, enter your query and hit "Search".</p>
 								</div>
 							</div>
@@ -133,7 +133,7 @@
 											<tbody>
 												<?php foreach($liquor_results as $result) : ?>
 													<tr>
-														<td><a class="underline" href="<?php print site_url('liquor/review/'.str_replace(' ', '_', $result->get_name())); ?>"><?php print $result->get_name(); ?></a></td>
+														<td><?php print $result->get_name(); ?></td>
 														<td><?php print $result->get_type(); ?></td>
 														<td><?php print $result->get_proof(); ?></td>
 														<td><?php print $result->get_percent_vol(); ?></td>
@@ -161,7 +161,7 @@
 											<tbody>
 												<?php foreach($mixer_results as $result) : ?>
 													<tr>
-														<td><a class="underline" href="<?php print site_url('mixer/review/'.str_replace(' ', '_', $result->get_name())); ?>"><?php print $result->get_name(); ?></a></td>
+														<td><?php print $result->get_name(); ?></td>
 														<td><?php print $result->get_type(); ?></td>
 													</tr>
 												<?php endforeach; ?>
@@ -188,7 +188,7 @@
 											<tbody>
 												<?php foreach($store_results as $result) : ?>
 													<tr>
-														<td><a class="underline" href="<?php print site_url('store/items/'.str_replace(' ', '_', $result->get_id())); ?>"><?php print $result->get_name(); ?></a></td>
+														<td><?php print $result->get_name(); ?></td>
 														<td><?php print $result->get_city(); ?></td>
 														<td><?php print $result->get_state(); ?></td>
 													</tr>
@@ -240,9 +240,9 @@
 										<nav class="bracket_link">
 											<a href="javascript:void(0)" id="add_company">Company</a>
 											<a href="javascript:void(0)" id="add_liquor">Liquor</a>
-											<a href="javascript:void(0)" id="add_mixer">Mixer</a>
-											<a href="javascript:void(0)" id="add_store">Store</a>
-											<a href="javascript:void(0)" id="add_recipe">Recipe</a>
+											<a href="javascript:void(0)" id="add_company">Mixer</a>
+											<a href="javascript:void(0)" id="add_company">Store</a>
+											<a href="javascript:void(0)" id="add_company">Recipe</a>
 										</nav>
 									</section>
 									<br/>
@@ -274,83 +274,18 @@
 							<form id="liquor_add" action="<?php print site_url('submit'); ?>" method="post" class="custom">
 								<div class="row">
 									<div class="small-4 small-offset-2 columns">
-										<label>Liquor Name<input type="text" name="l_name"></label>
+										<label>Liquor Name<input type="text" name="c_name"></label>
 									</div>
 									<div class="small-4 left columns">
-										<label>Type<select name="l_type">
-											<option value="NA">---</option>
-											<option value="Rum">Rum</option>
-											<option value="Whiskey">Whiskey</option>
-											<option value="Tequila">Tequila</option>
-											<option value="Vodka">Vodka</option>
-											<option value="Gin">Gin</option>
-											<option value="Grain">Grain Alcohol</option>
-											<option value="Scotch">Scotch</option>
-											<option value="Beer">Beer</option>
-											<option value="Wine">Wine</option>
-											<option value="Liqueur">Liqueur</option>
-											<option value="Other">Other</option>
-										</select></label>
+										<label>Year Founded<input type="text" name="c_founded"></label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="small-4 small-offset-2 columns">
-										<label>Proof<input type="text" name="l_proof"></label>
+										<label>City<input type="text" name="c_city"></label>
 									</div>
 									<div class="small-4 left columns">
-										<label>ABV<input type="text" name="l_abv"></label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="small-8 small-offset-2 columns">
-										<label>Store<select name="store">
-											<?php $all_stores = Store_Model::get_all(); ?>
-											<?php foreach($all_stores as $store) : ?>
-												<option value="<?php print $store->get_id(); ?>"><?php print $store->get_name(); ?>, <?php print $store->get_city(); ?></option>
-											<?php endforeach; ?>
-										</select></label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="small-6 small-offset-3 columns">
-										<input type="submit" class="button radius expand" value="Submit">
-									</div>
-								</div>
-							</form>
-							<form id="mixer_add" action="<?php print site_url('submit'); ?>" method="post" class="custom">
-								<div class="row">
-									<div class="small-4 small-offset-2 columns">
-										<label>Mixer Name<input type="text" name="m_name"></label>
-									</div>
-									<div class="small-4 left columns">
-										<label>Type<select name="m_type">
-											<option value="NA">---</option>
-											<option value="Juice">Juice</option>
-											<option value="Soda">Soda</option>
-											<option value="Sports Drink">Sports Drink</option>
-											<option value="Ginger Ale">Ginger Ale</option>
-											<option value="Other">Other</option>
-										</select></label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="small-6 small-offset-3 columns">
-										<input type="submit" class="button radius expand" value="Submit">
-									</div>
-								</div>
-							</form>
-							<form id="store_add" action="<?php print site_url('submit'); ?>" method="post" class="custom">
-								<div class="row">
-									<div class="small-8 small-offset-2 columns">
-										<label>Store Name<input type="text" name="s_name"></label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="small-4 small-offset-2 columns">
-										<label>City<input type="text" name="s_city"></label>
-									</div>
-									<div class="small-4 left columns">
-										<label>State<input type="text" name="s_state"></label>
+										<label>Country<input type="text" name="c_country"></label>
 									</div>
 								</div>
 								<div class="row">

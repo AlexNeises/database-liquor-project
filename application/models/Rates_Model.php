@@ -38,6 +38,35 @@ class Rates_Model extends CI_Model
 	}
 
 	//----------------------
+	// Static Methods
+	//----------------------
+
+	static public function get_all_review_ids_from_liquor($query)
+	{
+		$ci =& get_instance();
+
+		$select = sprintf("SELECT `rid` FROM `rates` WHERE `dname` = '%s'", $query);
+
+		$all = array();
+
+		if(!$query = $ci->db->query($select))
+		{
+			log_message('debug', $ci->db->_error_message());
+			return false;
+		}
+
+		if($query->num_rows > 0)
+		{
+			foreach($query->result() as $row)
+			{
+				$all[] = $row->rid;
+			}
+		}
+
+		return $all;
+	}
+
+	//----------------------
 	// Get and Set Methods
 	//----------------------
 

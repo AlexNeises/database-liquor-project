@@ -32,6 +32,11 @@ class Search extends CI_Controller {
 			{
 				$this->data['store_results'] = Store_Model::search($post_data['query_value']);
 			}
+
+			if($post_data['search_category'] == 'recipe' && $post_data['query_value'] != '')
+			{
+				$this->data['recipe_results'] = Mixes_With_Model::search($post_data['query_value']);
+			}
 		}
 		$this->data['page'] = 'search';
 		$this->load->view('header', $this->data);

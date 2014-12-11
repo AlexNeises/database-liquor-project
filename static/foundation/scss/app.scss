@@ -38,6 +38,73 @@
 //   "foundation/components/type",
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
+#company_add, #liquor_add, #mixer_add, #store_add {
+	display: none;
+}
+
+a {
+	text-decoration: underline;
+}
+
+.links {
+	text-align: center;
+}
+
+label {
+	color: #fff;
+}
+
+.left {
+	float: left !important;
+}
+
+a {
+	font-weight: 700;
+	color: #fff;
+	text-shadow: 2px 2px 1px #8C489F;
+}
+
+a:hover {
+	color: rgba(255, 255, 255, .75);
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.2s;
+	transition: transform 0.3s, opacity 0.2s;
+}
+
+.bracket_link a::before,
+.bracket_link a::after {
+	display: inline-block;
+	opacity: 0;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.2s;
+	transition: transform 0.3s, opacity 0.2s;
+}
+
+.bracket_link a::before {
+	margin-right: 10px;
+	content: '[';
+	-webkit-transform: translateX(20px);
+	-moz-transform: translateX(20px);
+	transform: translateX(20px);
+}
+
+.bracket_link a::after {
+	margin-left: 10px;
+	content: ']';
+	-webkit-transform: translateX(-20px);
+	-moz-transform: translateX(-20px);
+	transform: translateX(-20px);
+}
+
+.bracket_link a:hover::before,
+.bracket_link a:hover::after,
+.bracket_link a:focus::before,
+.bracket_link a:focus::after {
+	opacity: 1;
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	transform: translateX(0px);
+}
 
 h1 {
 	color: #FFF;
@@ -73,10 +140,12 @@ h1 {
 	}
 }
 
-.dynatable-per-page-select {
-	width: auto !important;
-	border-right: 1px !important;
-	border-color: #000 !important;
+.dynatable-search, .dynatable-per-page {
+	display: none;
+}
+
+h2 {
+	color: #FFF;
 }
 
 body {

@@ -40,27 +40,30 @@
 									<h3 style="color: white;">Leave a review</h3>
 								</div>
 							</div>
-							<div class="row">
-								<div class="small-8 small-offset-2 columns">
-									<label>Rating<select>
-										<option value="1">1 Star</option>
-										<option value="2">2 Stars</option>
-										<option value="3">3 Stars</option>
-										<option value="4">4 Stars</option>
-										<option value="5">5 Stars</option>
-									</select></label>
+							<form id="leave_review" action="<?php print site_url('drink/rate'); ?>" method="post" class="custom">
+								<div class="row">
+									<div class="small-8 small-offset-2 columns">
+										<label>Rating<select name="rating">
+											<option value="1">1 Star</option>
+											<option value="2">2 Stars</option>
+											<option value="3">3 Stars</option>
+											<option value="4">4 Stars</option>
+											<option value="5">5 Stars</option>
+										</select></label>
+									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="small-8 small-offset-2 columns">
-									<label>Review<textarea></textarea></label>
+								<div class="row">
+									<div class="small-8 small-offset-2 columns">
+										<label>Review<textarea name="review_area"></textarea></label>
+									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="small-4 small-offset-4 columns">
-									<a href="javascript:void(0)" class="expand button submit">Submit</a>
+								<div class="row">
+									<div class="small-4 small-offset-4 columns">
+										<input type="hidden" name="drink_name" value="<?php print $title; ?>"/>
+										<a href="javascript:void(0)" class="expand button submit">Submit</a>
+									</div>
 								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>

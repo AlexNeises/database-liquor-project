@@ -48,7 +48,7 @@ class Review_Model extends CI_Model
 			{
 				return false;
 			}
-			$this->_set_id($data->id);
+			// $this->_set_id($data->id);
 		}
 		else
 		{
@@ -96,6 +96,26 @@ class Review_Model extends CI_Model
 		}
 
 		return $all;
+	}
+
+	static public function max_id()
+	{
+		$ci =& get_instance();
+
+		$select = sprintf("SELECT * FROM `Review` WHERE `id` = (SELECT max(id) FROM `Review`)");
+
+		if(!$query = $ci->db->query($select))
+		{
+			log_message('debug', $ci->db->_error_message());
+			return false;
+		}
+
+		if($query->num_rows > 0)
+		{
+			$max = new Review_Model($query->result()[0]->id, $query->result()[0]);
+		}
+
+		return $max;
 	}
 
 	//----------------------

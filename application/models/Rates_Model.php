@@ -66,6 +66,18 @@ class Rates_Model extends CI_Model
 		return $all;
 	}
 
+	static public function insert($rid, $dname)
+	{
+		$ci =& get_instance();
+
+		$new_data = array(
+			'rid'			=>	$rid,
+			'dname'			=>	$dname
+		);
+		$ci->db->insert('Rates', $new_data);
+		return true;
+	}
+
 	//----------------------
 	// Get and Set Methods
 	//----------------------

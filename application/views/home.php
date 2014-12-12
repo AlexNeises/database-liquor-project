@@ -106,7 +106,7 @@
 											<tbody>
 												<?php foreach($drink_results as $result) : ?>
 													<tr>
-														<td><?php print $result->get_name(); ?></td>
+														<td><a class="underline" href="<?php print site_url('drink/review/'.str_replace(' ', '_', $result->get_name())); ?>"><?php print $result->get_name(); ?></a></td>
 													</tr>
 												<?php endforeach; ?>
 											</tbody>
@@ -133,7 +133,7 @@
 											<tbody>
 												<?php foreach($liquor_results as $result) : ?>
 													<tr>
-														<td><a class="underline" href="<?php print site_url('liquor/review/'.str_replace(' ', '_', $result->get_name())); ?>"><?php print $result->get_name(); ?></a></td>
+														<td><a class="underline" href="<?php print site_url('drink/review/'.str_replace(' ', '_', $result->get_name())); ?>"><?php print $result->get_name(); ?></a></td>
 														<td><?php print $result->get_type(); ?></td>
 														<td><?php print $result->get_proof(); ?></td>
 														<td><?php print $result->get_percent_vol(); ?></td>
@@ -361,6 +361,34 @@
 							</form>
 						</div>
 					</div>
+					<?php if(!isset($this->my_global_var_1)) : ?>
+						<form id="login" action="<?php print site_url('login'); ?>" method="post" class="custom">
+							<div class="row">
+								<div class="small-8 small-offset-2 columns">
+									<div class="row">
+										<div class="small-12 columns">
+											<p style="text-align: center;">Please log in below.</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="small-4 small-offset-4 columns">
+											<label>Username<input type="text" name="username"/></label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="small-4 small-offset-4 columns">
+											<label>Password<input type="password" name="password"/></label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="small-4 small-offset-4 columns">
+											<a href="javascript:void(0)" class="submit button expand">Login</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
